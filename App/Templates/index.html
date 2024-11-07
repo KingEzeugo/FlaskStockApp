@@ -5,15 +5,35 @@
     <title>Stock Data Visualizer</title>
 </head>
 <body>
-    <h1>Select a Stock Symbol</h1>
+    <h1>Stock Data Visualizer</h1>
     <form method="POST">
         <label for="symbol">Stock Symbol:</label>
         <select id="symbol" name="symbol">
-            {% for stock in symbols %}
-                <option value="{{ stock.symbol }}">{{ stock.symbol }} - {{ stock.name }}</option>
+            {% for sym in symbols %}
+                <option value="{{ sym }}">{{ sym }}</option>
             {% endfor %}
         </select>
-        <button type="submit">Submit</button>
+        
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+        
+        <label for="chart_type">Chart Type:</label>
+        <select id="chart_type" name="chart_type">
+            <option value="Line">Line</option>
+            <option value="Bar">Bar</option>
+        </select>
+        
+        <button type="submit">Generate Chart</button>
     </form>
+
+    {% if chart_uri %}
+        <h2>Chart</h2>
+        <embed type="image/svg+xml" src="{{ chart_uri }}" />
+    {% else %}
+        <p>No data available for the selected criteria.</p>
+    {% endif %}
 </body>
 </html>
