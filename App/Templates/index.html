@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Data Visualizer</title>
+</head>
+<body>
+    <h1>Select a Stock Symbol</h1>
+    <form method="POST">
+        <label for="symbol">Stock Symbol:</label>
+        <select id="symbol" name="symbol">
+            {% for stock in symbols %}
+                <option value="{{ stock.symbol }}">{{ stock.symbol }} - {{ stock.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
